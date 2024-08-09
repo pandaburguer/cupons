@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panda Burguer 🐼 - Cupom Promocional</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #000000;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .cupom {
+            background-color: #ffecb3;
+            border: 2px dashed #ffa726;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 35px 0;
+            font-size: 18px;
+            color: #e65100;
+        }
+        .descricao {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .botao-cupom {
+            max-width: 350px;
+            margin: 8px 0;
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            padding: 14px;
+            text-align: center;
+            font-size: 18px;
+            color: #FFFFFF;
+            background-color: #ffa726;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .botao-cupom:hover {
+            background-color: #fb8c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/pandaburguer/coupom/main/logo.png" alt="Panda Burguer Logo" class="logo">
+        <h1>Panda Burguer 🐼</h1>
+        <div class="cupom">Carregando...</div>
+        <p class="descricao">Carregando descrição...</p>
+        <a href="#" class="botao-cupom">USAR ESTE CUPOM</a>
+    </div>
+</body>
+<script>
+    function getQueryParams() {
+        const params = {};
+        window.location.search.substr(1).split("&").forEach(function(part) {
+            const [key, value] = part.split("=");
+            params[key] = decodeURIComponent(value);
+        });
+        return params;
+    }
+
+    function aplicarCupomNoWhatsApp() {
+        const params = getQueryParams();
+        const cupom = params.cupom || "SEM CUPOM";
+        const descricao = params.description || "Parece que este cupom é inválido ou já expirou.";
+
+        document.querySelector('.cupom').innerText = cupom;
+        document.querySelector('.descricao').innerText = descricao;
+
+        const numeroWhatsApp = "+5533999502187";
+        const mensagem = "Olá, gostaria de usar o cupom " + cupom + " no meu pedido!";
+        const link = "https://wa.me/" + numeroWhatsApp + "?text=" + encodeURIComponent(mensagem);
+
+        document.querySelector('.botao-cupom').href = link;
+    }
+
+    window.onload = aplicarCupomNoWhatsApp;
+</script>
+</html>
